@@ -1,5 +1,27 @@
-# Task-Tracker
+# Task Tracker
+This is a tool for tracking work done across multiple tasks that may run concurrently. Time is tracked by task and current work period, allowing users to track daily work rather than just recording the total work after a multi-day project is completed.
 
-This is a tool I'm building to help me with better tracking my time spent on tasks when being moved frequently between different tasks.
+Work logs are stored between sessions, allowing work to be recorded as a task progresses without fear of losing the time spent recording what was done. This encourages tracking work as you go rather than trying to recall all the details of what was done at the end.
 
-The tool is also intended to support JIRA formatting to allow easily submitting formatted logs of work done.
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+## Dependancies
+
+* [SQLite-net-pcl](https://github.com/praeclarum/sqlite-net) - SQLite library
+* C# 7
+* .NET Framework 4.6.1
+
+## Contributing
+
+TBD
+
+## Versioning
+
+TBD
+
+## Authors
+
+* **Hunter Curren** - *Initial work* - [hcurren](https://github.com/hcurren)
+
