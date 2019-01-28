@@ -6,28 +6,66 @@
         xmlns:local="clr-namespace:Task_Tracker.View"
         mc:Ignorable="d"
         Title="TaskTrackerWindow" Height="600" Width="800">
-    <DockPanel>
-		<StackPanel>
-			<StackPanel Orientation="Horizontal"
-						Margin="5">
-				<ComboBox x:Name="projectSelectionComboBox"
-						  Width="100"
-						  SelectionChanged="ProjectSelectionComboBox_SelectionChanged"/>
-				<TextBox x:Name="taskFilterTextBox"
-						 Margin="5, 0, 0, 0"
-						 Width="100"/>
-			</StackPanel>
-			<StackPanel Margin="5, 0, 5, 5">
-				<ListView x:Name="taskListView">
-					
-				</ListView>
-			</StackPanel>
-		</StackPanel>
-		<StackPanel>
-			
-		</StackPanel>
-		<StackPanel>
-			
-		</StackPanel>
-    </DockPanel>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <ComboBox x:Name="projectSelectionComboBox"
+						Width="80"
+                        Margin="5"
+						SelectionChanged="ProjectSelectionComboBox_SelectionChanged"/>
+            <TextBox x:Name="taskFilterTextBox"
+					   Margin="0, 5, 5, 5" 
+                       Width="110"/>
+        </StackPanel>
+        <ListView x:Name="taskListView"
+                  Grid.Row="1"
+                  Margin="5, 0, 0, 5">
+            
+        </ListView>
+        <ListView x:Name="workLogListView"
+                  Grid.Column="1"
+                  Grid.Row="1"
+                  Margin="5, 0, 0, 5">
+            
+        </ListView>
+        <Grid Grid.Column="2"
+              Margin="0, 5, 5, 5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button x:Name="submitWorkLogButton"
+                    Content="Submit"
+                    Width="80"/>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Grid.Column="1">
+                <TextBlock Margin="5, 0, 5, 0"/>
+                <Button x:Name="startButton"
+                        Width="30"
+                        Content=">"/>
+                <Button x:Name="pauseButton"
+                        Width="30"
+                        Margin="5, 0, 5, 0"
+                        Content="||"/>
+                <Button x:Name="stopButton"
+                        Width="30"
+                        Content="S"/>
+            </StackPanel>
+        </Grid>
+        <RichTextBox x:Name="taskLogTextBox"
+                     Grid.Column="2"
+                     Grid.Row="1"
+                     Margin="5, 0, 5, 5">
+            
+        </RichTextBox>
+    </Grid>
 </Window>

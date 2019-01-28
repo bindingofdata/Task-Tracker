@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,8 @@ namespace Task_Tracker.Model
         private int logID;
         private int parentTaskID;
         private DateTime startDate;
-        private TimeSpan timeWorked;
+        private TimeSpan loggedTime;
+        private Stopwatch timeWorked;
         private string workLogBody;
         private WorkStates currentState;
 
@@ -37,10 +39,9 @@ namespace Task_Tracker.Model
             set { startDate = value; }
         }
 
-        public TimeSpan TimeWorked
+        public TimeSpan LoggedTime
         {
-            get { return timeWorked; }
-            set { timeWorked = value; }
+            get { return loggedTime; }
         }
 
         public string WorkLogBody
@@ -53,6 +54,18 @@ namespace Task_Tracker.Model
         {
             get { return currentState; }
             set { currentState = value; }
+        }
+
+        [Ignore]
+        public TimeSpan TimeWorked
+        {
+            get { return loggedTime + timeWorked.Elapsed; }
+        }
+
+        public WorkLog()
+        {
+            startDate = DateTime.Now;
+            timeWorked = new Stopwatch();
         }
     }
 }
