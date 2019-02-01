@@ -13,6 +13,7 @@ namespace Task_Tracker.Model
         private string taskName;
         private List<WorkLog> workLogs;
         private WorkStates currentState;
+        private string jiraLink;
 
         [PrimaryKey, AutoIncrement]
         public int TaskID
@@ -38,6 +39,12 @@ namespace Task_Tracker.Model
         {
             get { return currentState; }
             set { currentState = value; }
+        }
+
+        public string JiraLink
+        {
+            get { return jiraLink; }
+            set { jiraLink = value; }
         }
     }
 }

@@ -15,6 +15,7 @@ namespace Task_Tracker.ViewModel
         public ObservableCollection<Task> Tasks { get; set; }
         public ObservableCollection<WorkLog> WorkLogs { get; set; }
         private Task selectedTask;
+        private WorkLog selectedWorkLog;
 
         public WorkLogVM()
         {
@@ -22,6 +23,29 @@ namespace Task_Tracker.ViewModel
             WorkLogs = new ObservableCollection<WorkLog>();
         }
 
+        public void NewTask()
+        {
 
+        }
+
+        public void DeleteTask(int taskID)
+        {
+
+        }
+
+        public void NewWorkLog(int parentTaskID)
+        {
+
+        }
+
+        public void DeleteWorkLog(int workLogID)
+        {
+
+        }
+
+        public void SubmitWorkLog()
+        {
+
+        }
     }
 }

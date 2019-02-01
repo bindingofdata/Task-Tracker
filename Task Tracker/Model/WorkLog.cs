@@ -15,9 +15,9 @@ namespace Task_Tracker.Model
         private int parentTaskID;
         private DateTime startDate;
         private TimeSpan loggedTime;
-        private Stopwatch timeWorked;
+        private Stopwatch timer;
         private string workLogBody;
-        private WorkStates currentState;
+        private bool workLogComplete;
 
         [PrimaryKey, AutoIncrement]
         public int LogID
@@ -50,22 +50,33 @@ namespace Task_Tracker.Model
             set { workLogBody = value; }
         }
 
-        public WorkStates CurrentState
+        public bool IsTimerActive
         {
-            get { return currentState; }
-            set { currentState = value; }
+            get { return timer.IsRunning; }
+        }
+
+        public bool WorkLogComplete
+        {
+            get { return workLogComplete; }
+            set { workLogComplete = value; }
+        }
+
+        [Ignore]
+        public Stopwatch Timer
+        {
+            get { return timer; }
         }
 
         [Ignore]
         public TimeSpan TimeWorked
         {
-            get { return loggedTime + timeWorked.Elapsed; }
+            get { return loggedTime + timer.Elapsed; }
         }
 
         public WorkLog()
         {
             startDate = DateTime.Now;
-            timeWorked = new Stopwatch();
+            timer = new Stopwatch();
         }
     }
 }
