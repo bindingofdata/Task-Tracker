@@ -82,6 +82,8 @@
     <Compile Include="ViewModel\Commands\NewTaskCommand.cs" />
     <Compile Include="ViewModel\Commands\NewWorkLogCommand.cs" />
     <Compile Include="ViewModel\Commands\SubmitWorkLogCommand.cs" />
+    <Compile Include="ViewModel\DatabaseHelperClass.cs" />
+    <Compile Include="ViewModel\JiraHelperClass.cs" />
     <Compile Include="ViewModel\WorkLogVM.cs" />
     <Compile Include="View\TaskTrackerWindow.xaml.cs">
       <DependentUpon>TaskTrackerWindow.xaml</DependentUpon>
