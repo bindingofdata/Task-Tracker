@@ -4,11 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Task_Tracker.View"
+        xmlns:vm="clr-namespace:Task_Tracker.ViewModel"
         mc:Ignorable="d"
         Title="TaskTrackerWindow" Height="600" Width="800">
-    <Grid>
+
+    <Window.Resources>
+        <vm:WorkLogVM x:Key="workLogVM"/>
+    </Window.Resources>
+
+    <Grid DataContext="{StaticResource workLogVM}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
@@ -18,25 +23,29 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
             <ComboBox x:Name="projectSelectionComboBox"
-						Width="80"
+						Width="45"
                         Margin="5"
 						SelectionChanged="ProjectSelectionComboBox_SelectionChanged"/>
-            <TextBox x:Name="taskFilterTextBox"
-					   Margin="0, 5, 5, 5" 
-                       Width="110"/>
+            <Button x:Name="addWorkLogButton"
+                    Content="New Log"
+                    Command="{Binding NewWorkLogCommand}"
+                    Width="70"
+                    Margin="0, 5, 5, 5"/>
+            <Button x:Name="deleteWorkLogButton"
+                    Content="Delete log"
+                    Command="{Binding DeleteWorkLogCommand}"
+                    CommandParameter="{Binding SelectedWorkLog}"
+                    Width="70"
+                    Margin="0, 5, 0, 5"/>
         </StackPanel>
-        <ListView x:Name="taskListView"
-                  Grid.Row="1"
-                  Margin="5, 0, 0, 5">
-            
-        </ListView>
         <ListView x:Name="workLogListView"
-                  Grid.Column="1"
                   Grid.Row="1"
+                  ItemsSource="{Binding WorkLogs}"
+                  SelectedItem="{Binding SelectedWorkLog, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   Margin="5, 0, 0, 5">
-            
+
         </ListView>
-        <Grid Grid.Column="2"
+        <Grid Grid.Column="1"
               Margin="0, 5, 5, 5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="90"/>
@@ -62,7 +71,7 @@
             </StackPanel>
         </Grid>
         <RichTextBox x:Name="taskLogTextBox"
-                     Grid.Column="2"
+                     Grid.Column="1"
                      Grid.Row="1"
                      Margin="5, 0, 5, 5">
             

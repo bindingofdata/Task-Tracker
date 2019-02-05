@@ -5,26 +5,28 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
+using Task_Tracker.Model;
+
 namespace Task_Tracker.ViewModel.Commands
 {
-    class SubmitWorkLogCommand : ICommand
+    class DeleteWorkLogCommand : ICommand
     {
         public WorkLogVM VM { get; set; }
         public event EventHandler CanExecuteChanged;
 
-        public SubmitWorkLogCommand(WorkLogVM vm)
+        public DeleteWorkLogCommand(WorkLogVM vm)
         {
             VM = vm;
         }
 
         public bool CanExecute ( object parameter )
         {
-            return true;
+            return parameter is WorkLog SelectedWorkLog;
         }
 
         public void Execute ( object parameter )
         {
-            throw new NotImplementedException();
+            VM.DeleteWorkLog( parameter as WorkLog );
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -9,15 +10,14 @@ using SQLite;
 
 namespace Task_Tracker.Model
 {
-    public class WorkLog
+    public class WorkLog : INotifyPropertyChanged
     {
         private int logID;
-        private int parentTaskID;
+        private string parentTaskLink;
         private DateTime startDate;
         private TimeSpan loggedTime;
         private Stopwatch timer;
         private string workLogBody;
-        private bool workLogComplete;
 
         [PrimaryKey, AutoIncrement]
         public int LogID
@@ -26,11 +26,10 @@ namespace Task_Tracker.Model
             set { logID = value; }
         }
 
-        [Indexed]
-        public int ParentTaskID
+        public string ParentTaskLink
         {
-            get { return parentTaskID; }
-            set { parentTaskID = value; }
+            get { return parentTaskLink; }
+            set { parentTaskLink = value; }
         }
 
         public DateTime StartDate
@@ -55,12 +54,6 @@ namespace Task_Tracker.Model
             get { return timer.IsRunning; }
         }
 
-        public bool WorkLogComplete
-        {
-            get { return workLogComplete; }
-            set { workLogComplete = value; }
-        }
-
         [Ignore]
         public Stopwatch Timer
         {
@@ -77,6 +70,13 @@ namespace Task_Tracker.Model
         {
             startDate = DateTime.Now;
             timer = new Stopwatch();
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
         }
     }
 }

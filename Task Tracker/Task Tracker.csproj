@@ -76,10 +76,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Model\Task.cs" />
     <Compile Include="Model\WorkLog.cs" />
-    <Compile Include="Model\WorkStates.cs" />
-    <Compile Include="ViewModel\Commands\NewTaskCommand.cs" />
+    <Compile Include="ViewModel\Commands\DeleteWorkLogCommand.cs" />
     <Compile Include="ViewModel\Commands\NewWorkLogCommand.cs" />
     <Compile Include="ViewModel\Commands\SubmitWorkLogCommand.cs" />
     <Compile Include="ViewModel\DatabaseHelperClass.cs" />
