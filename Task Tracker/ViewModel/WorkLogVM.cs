@@ -12,12 +12,16 @@ using System.ComponentModel;
 
 namespace Task_Tracker.ViewModel
 {
-    class WorkLogVM : INotifyPropertyChanged
+    internal class WorkLogVM : INotifyPropertyChanged
     {
         public ObservableCollection<WorkLog> WorkLogs { get; set; }
         public NewWorkLogCommand NewWorkLogCommand { get; set; }
         public DeleteWorkLogCommand DeleteWorkLogCommand { get; set; }
         public SubmitWorkLogCommand SubmitWorkLogCommand { get; set; }
+        public HasEditedWorkLogCommand HasEditedWorkLogCommand { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         private WorkLog selectedWorkLog;
 
         public WorkLog SelectedWorkLog
@@ -26,7 +30,7 @@ namespace Task_Tracker.ViewModel
             set
             {
                 selectedWorkLog = value;
-                OnPropertyChanged( "SelectedWorkLog" );
+                OnPropertyChanged( nameof( SelectedWorkLog ) );
             }
         }
 
@@ -36,6 +40,7 @@ namespace Task_Tracker.ViewModel
             NewWorkLogCommand = new NewWorkLogCommand( this );
             DeleteWorkLogCommand = new DeleteWorkLogCommand( this );
             SubmitWorkLogCommand = new SubmitWorkLogCommand( this );
+            HasEditedWorkLogCommand = new HasEditedWorkLogCommand( this );
             LoadWorkLogs();
             if ( WorkLogs.Count > 0 )
                 SelectedWorkLog = WorkLogs[0];
@@ -48,6 +53,11 @@ namespace Task_Tracker.ViewModel
             DatabaseHelperClass.InsertRecord( newLog );
             WorkLogs.Add( newLog );
             SelectedWorkLog = newLog;
+        }
+
+        public void UpdateWorkLog(WorkLog workLog)
+        {
+            DatabaseHelperClass.UpdateRecord(workLog);
         }
 
         public void DeleteWorkLog(WorkLog workLog)
@@ -74,10 +84,8 @@ namespace Task_Tracker.ViewModel
 
         public void SubmitWorkLog()
         {
-
+            throw new NotImplementedException();
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged ( string propertyName )
         {
