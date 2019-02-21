@@ -1,6 +1,4 @@
 # Task Tracker
-This is a tool for tracking work done across multiple tasks that may run concurrently. Time is tracked by task and current work period, allowing users to track daily work rather than just recording the total work after a multi-day project is completed.
-
 Work logs are stored between sessions, allowing work to be recorded as a task progresses without fear of losing the time spent recording what was done. This encourages tracking work as you go rather than trying to recall all the details of what was done at the end.
 
 ## Getting Started
