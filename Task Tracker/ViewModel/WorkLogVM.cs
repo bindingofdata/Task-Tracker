@@ -29,8 +29,9 @@ namespace Task_Tracker.ViewModel
             get { return selectedWorkLog; }
             set
             {
+                DatabaseHelperClass.UpdateRecord(SelectedWorkLog);
                 selectedWorkLog = value;
-                OnPropertyChanged( nameof( SelectedWorkLog ) );
+                OnPropertyChanged("SelectedWorklog");
             }
         }
 

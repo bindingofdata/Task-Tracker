@@ -23,25 +23,27 @@ namespace Task_Tracker.View
     public partial class TaskTrackerWindow : Window
     {
         WorkLogVM workLogVM;
+
         public TaskTrackerWindow()
         {
             InitializeComponent();
 
             workLogVM = new WorkLogVM();
-
-            workLogVM.PropertyChanged += ViewModel_SelectedWorkLogChanged;
         }
 
-        private void ViewModel_SelectedWorkLogChanged( object sender, EventArgs e )
+        private void TaskLogTextBox_SelectionChanged(object sender, RoutedEventArgs e)
         {
-            taskLogTextBox.Document.Blocks.Clear();
+            
+        }
 
-            if ( workLogVM.SelectedWorkLog == null )
+        private void TaskLogTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (workLogVM.SelectedWorkLog == null)
                 return;
 
-            Paragraph workLogText = new Paragraph();
-            workLogText.Inlines.Add( workLogVM.SelectedWorkLog.WorkLogBody);
-            taskLogTextBox.Document.Blocks.Add( workLogText );
+            TextRange richTextContent = new TextRange(taskLogTextBox.Document.ContentStart, taskLogTextBox.Document.ContentEnd);
+
+            workLogVM.SelectedWorkLog.WorkLogBody = richTextContent.Text;
         }
     }
 }

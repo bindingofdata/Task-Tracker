@@ -69,13 +69,8 @@
         <RichTextBox x:Name="taskLogTextBox"
                      Grid.Column="1"
                      Grid.Row="1"
-                     Margin="5, 0, 5, 5">
-            <b:Interaction.Triggers>
-                <b:EventTrigger EventName="LostFocus">
-                    <b:InvokeCommandAction Command="{Binding Source={StaticResource workLogVM}, Path=HasEditedWorkLogCommand}"
-                                           CommandParameter="{Binding}"/>
-                </b:EventTrigger>
-            </b:Interaction.Triggers>
-        </RichTextBox>
+                     Margin="5, 0, 5, 5"
+					 SelectionChanged="TaskLogTextBox_SelectionChanged"
+					 TextChanged="TaskLogTextBox_TextChanged"/>
     </Grid>
 </Window>
